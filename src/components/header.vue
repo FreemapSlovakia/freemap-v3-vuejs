@@ -1,7 +1,7 @@
 <template>
   <div class="header">
-    <span>header be here</span>
-
+    <input v-model="searchQuery">
+    <button v-on:click="doSearch">Search</button>
   </div>
 </template>
 
@@ -11,6 +11,17 @@ export default {
   name: 'header',
   data () {
     return {
+      searchQuery: ''
+    }
+  },
+  methods: {
+    doSearch: function(){
+      var url = 'http://www.freemap.sk/api/0.1/q/'+this.searchQuery+'&lat=48.32805999999996&lon=19.347240000000422'
+      $.get(url).then(response => {
+        console.log(response)
+      }, errorResponse => {
+        console.log(errorResponse)
+      });
     }
   }
 }
