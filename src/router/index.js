@@ -7,9 +7,16 @@ Vue.use(Router)
 export default new Router({
   routes: [
     {
-      path: '/',
+      path: '/:zoom/:lat/:lon/',
       name: 'home',
-      component: home
+      component: home,
+      props: true
+    },
+    {
+      path: '/',
+      name: 'home-without-params',
+      component: home,
     }
-  ]
+  ],
+  
 })
