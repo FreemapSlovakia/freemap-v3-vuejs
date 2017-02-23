@@ -66,7 +66,7 @@
 
 export default {
   name: 'navbar',
-  props: ['mapType', 'lat', 'lon'],
+  props: ['mapType'],
   data () {
     return {
       searchQuery: ''

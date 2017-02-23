@@ -1,8 +1,6 @@
 <template>
   <div class="home">
     <app-header v-bind:mapType="mapType"
-      v-bind:lat="lat" 
-      v-bind:lon="lon"
       v-on:userClickedSearch="doSearch"></app-header>
     <app-map v-bind:mapType="mapType"
       v-bind:zoom="zoom" 
