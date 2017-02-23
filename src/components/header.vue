@@ -28,10 +28,30 @@
                  Menu
                  <span class="caret"></span></a>
               <ul class="dropdown-menu">
-                <li><a href="#">Turistická mapa</a></li>
-                <li><a href="#">Cyklomapa</a></li>
-                <li><a href="#">Automapa</a></li>
-                <li><a href="#">Lyžiarska mapa</a></li>
+                <li>
+                  <a v-on:click="setMap('T')">
+                  Turistická mapa
+                  <span class="glyphicon glyphicon-ok" v-if="mapType == 'T'"></span>
+                  </a>
+                </li>
+                <li>
+                  <a v-on:click="setMap('C')">
+                  Cyklomapa
+                  <span class="glyphicon glyphicon-ok" v-if="mapType == 'C'"></span>
+                  </a>
+                </li>
+                <li>
+                  <a v-on:click="setMap('A')">
+                    Automapa
+                    <span class="glyphicon glyphicon-ok" v-if="mapType == 'A'"></span>
+                  </a>
+                </li>
+                <li>
+                  <a v-on:click="setMap('K')">
+                    Lyžiarska mapa
+                    <span class="glyphicon glyphicon-ok" v-if="mapType == 'K'"></span>
+                  </a>
+                </li>
                 <li role="separator" class="divider"></li>
                 <li><a href="#">TODO</a></li>
               </ul>
@@ -46,6 +66,7 @@
 
 export default {
   name: 'navbar',
+  props: ['mapType', 'lat', 'lon'],
   data () {
     return {
       searchQuery: ''
@@ -59,6 +80,12 @@ export default {
       }, errorResponse => {
         console.log(errorResponse)
       });
+    },
+
+    setMap: function(t){
+      this.$router.replace({ name: "home", params: {
+        mapType: t
+      } })
     }
   }
 }
