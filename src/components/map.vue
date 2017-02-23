@@ -20,7 +20,6 @@ export default {
       this.searchResultMarkersGroup.addTo(this.leafletMap)
 
       var that = this
-      var firstMarker = null
       results.forEach((r) => {
         var m = L.marker([r.lat, r.lon], {title: r.name})
         m.addTo(that.searchResultMarkersGroup)
