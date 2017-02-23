@@ -18,7 +18,7 @@
             <div class="form-group">
               <input type="text" v-model="searchQuery" class="form-control" placeholder="Brusno">
             </div>
-            <button type="submit" v-on:click="doSearch"  class="btn btn-default">
+            <button type="submit" v-on:click="userClickedSearch"  class="btn btn-default">
               <span class="glyphicon glyphicon-search"></span>
             </button>
           </div>
@@ -73,13 +73,8 @@ export default {
     }
   },
   methods: {
-    doSearch: function(){
-      var url = 'http://www.freemap.sk/api/0.1/q/'+this.searchQuery+'&lat=48.32805999999996&lon=19.347240000000422'
-      $.get(url).then(response => {
-        console.log(response)
-      }, errorResponse => {
-        console.log(errorResponse)
-      });
+    userClickedSearch: function(){
+      this.$emit('userClickedSearch', this.searchQuery)
     },
 
     setMap: function(t){

@@ -7,16 +7,36 @@
 <script>
 export default {
   name: 'map',
-  props: ['mapType', 'zoom', 'lat', 'lon'],
+  props: ['mapType', 'zoom', 'lat', 'lon', 'searchResults'],
   watch : {
     mapType : function (value) {
       this.refreshMapLayer()
+    },
+    searchResults : function (results) {
+      if(this.searchResultMarkersGroup)
+        this.leafletMap.removeLayer(this.searchResultMarkersGroup)
+
+      this.searchResultMarkersGroup = L.layerGroup()
+      this.searchResultMarkersGroup.addTo(this.leafletMap)
+
+      var that = this
+      var firstMarker = null
+      results.forEach((r) => {
+        var m = L.marker([r.lat, r.lon], {title: r.name})
+        m.addTo(that.searchResultMarkersGroup)
+      })
+
+      if(results.length > 0){
+        var firstResult = results[0]
+        this.leafletMap.setView(new L.LatLng(firstResult.lat, firstResult.lon), 15);
+      }
     }
   },  
   data () {
     return {
       leafletMap: null,
-      leafletMapLayer: null
+      leafletMapLayer: null,
+      searchResultMarkersGroup: null
     }
   },
   mounted: function () {
