@@ -44,13 +44,9 @@ export default {
     this.refreshMapLayer()
     let that = this
     this.leafletMap.on('moveend', function(e) {
-      let c = that.leafletMap.getCenter()
-      that.$router.replace({ name: "home", params: {
-        zoom: that.leafletMap.getZoom(),
-        lat: c.lat.toFixed(5),
-        lon: c.lng.toFixed(5)
-      } })
+      that.refreshURLparams()
     });
+    that.refreshURLparams()
   },
 
   methods: {
@@ -64,6 +60,17 @@ export default {
       })
       
       this.leafletMapLayer.addTo(this.leafletMap);
+    },
+
+    refreshURLparams: function(){
+      let that = this
+      let c = that.leafletMap.getCenter()
+      that.$router.replace({ name: "home", params: {
+        zoom: that.leafletMap.getZoom(),
+        lat: c.lat.toFixed(5),
+        lon: c.lng.toFixed(5),
+        mapType: that.mapType
+      } })
     }
   }
 }
