@@ -53,7 +53,7 @@ export default {
       if(this.leafletMapLayer)
         this.leafletMap.removeLayer(this.leafletMapLayer)
 
-      this.leafletMapLayer = L.tileLayer('http://{s}.freemap.sk/'+this.mapType+'/{z}/{x}/{y}.jpeg', {
+      this.leafletMapLayer = L.tileLayer('http://{s}.freemap.sk/'+this.mapType+'/{z}/{x}/{y}.png', {
           attribution: '&copy; prispievatelia <a href="http://openstreetmap.org">OpenStreetMap</a>',
           maxZoom: 16
       })
